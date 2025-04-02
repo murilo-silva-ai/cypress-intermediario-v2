@@ -9,7 +9,7 @@ describe('Creating project', () => {
             name: `project-${faker.datatype.uuid()}`,
             description: faker.random.words(5)
         }
-        cy.visit('/projects/new')
+        
         cy.gui_createProject(project)
 
         cy.url().should('be.equal', `${Cypress.config('baseUrl')}/${Cypress.env('user_name')}/${project.name}`)
