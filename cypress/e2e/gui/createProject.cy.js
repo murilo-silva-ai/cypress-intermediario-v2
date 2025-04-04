@@ -1,7 +1,10 @@
 import { faker } from '@faker-js/faker'
 
-describe('Creating project', () => {
+const options = { env: { snapshotOnly: true } }
+
+describe('Creating project', options, () => {
     beforeEach(() => {
+        cy.api_deleteProject()
         cy.login()
     })
     it('Creates project successfully', () => {
@@ -9,7 +12,7 @@ describe('Creating project', () => {
             name: `project-${faker.datatype.uuid()}`,
             description: faker.random.words(5)
         }
-        
+
         cy.gui_createProject(project)
 
         cy.url().should('be.equal', `${Cypress.config('baseUrl')}/${Cypress.env('user_name')}/${project.name}`)
