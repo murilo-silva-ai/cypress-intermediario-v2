@@ -81,3 +81,8 @@ Cypress.Commands.add('gui_createLabel', (label) => {
         .type('#69D100')
     cy.get('input[value="Create label"]').click()
 })
+
+Cypress.Commands.add('gui_setMilestoneOnIssue', milestone => {
+    cy.get('.block.milestone .edit-link').click()
+    cy.contains(milestone.title).click()
+})

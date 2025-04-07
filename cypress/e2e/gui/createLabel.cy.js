@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker'
 
 const options = { env: { snapshotOnly: true } }
 
-describe('Create Label - GUI', () => {
+describe('Create Label - GUI', options, () => {
     const label = {
         title: `Label - ${faker.datatype.uuid()}`,
         description: faker.random.words(5),
@@ -18,7 +18,7 @@ describe('Create Label - GUI', () => {
         cy.login()
     })
 
-    it('Create a Label sucessfuly - GUI', options, () => {
+    it('Create a Label sucessfuly - GUI', () => {
         cy.gui_createLabel(label)
 
         cy.get('[class="badge color-label "]')
@@ -30,7 +30,7 @@ describe('Create Label - GUI', () => {
     })
 })
 
-describe('Create label - API', () => {
+describe('Create label - API', options, () => {
     const label = {
         name: `Label - ${faker.datatype.uuid()}`,
         description: faker.random.words(5),
@@ -55,7 +55,7 @@ describe('Create label - API', () => {
             })
     })
 
-    it('Add label to an issue successfully - GUI', options, () => {
+    it('Add label to an issue successfully - GUI', () => {
         cy.get('.qa-edit-link-labels').click()
         cy.get('.label-item')
             .should('be.visible')
