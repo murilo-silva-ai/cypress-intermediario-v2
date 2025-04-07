@@ -70,3 +70,14 @@ Cypress.Commands.add('gui_createIssue', (issue) => {
     cy.get('#issuable-due-date').type('01/01/2050')
     cy.get('input[value="Submit issue"]').click()
 })
+
+Cypress.Commands.add('gui_createLabel', (label) => {
+    cy.visit(`/${Cypress.env('user_name')}/${label.project.name}/-/labels`)
+    cy.get('.qa-label-create-new').click()
+    cy.get('#label_title').type(label.title)
+    cy.get('#label_description').type(label.description)
+    cy.get('#label_color')
+        .clear()
+        .type('#69D100')
+    cy.get('input[value="Create label"]').click()
+})
